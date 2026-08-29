@@ -1,5 +1,7 @@
 # Log Output Sample With Go
 
+The application generates a random UUID on startup, stores it in memory, and outputs it every 5 seconds together with a timestamp.
+
 ## Build Docker Image
 ```shell
 docker build -t log-output:1.1 .
