@@ -5,9 +5,11 @@ import (
 	"log"
 	"net/http"
 	"os"
+	
+	"todo_app/handlers"
 )
 
-func main(){
+func main() {
 	port := os.Getenv("PORT")
 
 	if port == "" {
@@ -15,6 +17,10 @@ func main(){
 	}
 
 	fmt.Println("Server is running on : ", port)
+
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		handlers.LandingPageHandler(w, *r)
+	})
 
 	err := http.ListenAndServe(":"+port, nil)
 	if err != nil {

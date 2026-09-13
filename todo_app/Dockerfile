@@ -11,5 +11,6 @@ FROM alpine:3.22
 WORKDIR /app
 
 COPY --from=builder /app/todo_app .
+COPY --from=builder /app/templates ./templates
 
 CMD [ "./todo_app" ]
