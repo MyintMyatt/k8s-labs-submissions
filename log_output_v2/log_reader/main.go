@@ -1,7 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"log"
+)
 
 func main() {
-	fmt.Println("Hello from log reader .....")
+	log.Println("Log reader is running .................")
 }
