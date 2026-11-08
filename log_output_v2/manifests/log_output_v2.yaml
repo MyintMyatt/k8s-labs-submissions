@@ -21,17 +21,32 @@ spec:
           image: log_writer:1.0
           env:
             - name: LOG_DIR
-              value: /usr/src/app/logs/log.txt
+              value: /usr/src/log-writer/logs/log.txt
           volumeMounts:
             - name: shared-dir
-              mountPath: /usr/src/app/logs
+              mountPath: /usr/src/log-writer/logs
 
         # log reader container
         - name: log-reader
           image: log_reader:1.0
           env:
             - name: LOG_DIR
-              value: /usr/src/app/logs/log.txt
+              value: /usr/src/log-reader/logs/log.txt
           volumeMounts:
             - name: shared-dir
-              mountPath: /usr/src/app/logs
+              mountPath: /usr/src/log-reader/logs
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: log-output-v2-svc
+spec:
+  selector:
+    app: log-output-v2
+  type: ClusterIP
+  ports:
+    - name: log-output-v2-svc
+      protocol: TCP
+      port: 80
+      targetPort: 6969 
+  

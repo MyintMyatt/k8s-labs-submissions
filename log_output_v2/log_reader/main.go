@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -15,11 +14,15 @@ func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		content, err := readFile()
 		if err != nil {
-			w.Write(fmt.Appendf(content, "%v\n", err))
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
 		}
-		w.Write([]byte(content))
+
+		w.Header().Set("Content-Type", "text/plain")
+		w.Write(content)
 	})
 	http.ListenAndServe(":6969", nil)
+
 }
 
 func readFile() ([]byte, error) {

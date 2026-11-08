@@ -13,6 +13,7 @@
 - [1.7. External access with Ingress for log-output](https://github.com/MyintMyatt/k8s-labs-submissions/tree/1.7/log_output)
 - [1.8. External access with Ingress for todo app](https://github.com/MyintMyatt/k8s-labs-submissions/tree/1.8/todo_app)
 - [1.9. Ping Pong with ingress](https://github.com/MyintMyatt/k8s-labs-submissions/tree/1.9/ping_pong)
+- [1.10. Ping Pong with ingress](https://github.com/MyintMyatt/k8s-labs-submissions/tree/1.10/log_output_v2)
 
 
 
