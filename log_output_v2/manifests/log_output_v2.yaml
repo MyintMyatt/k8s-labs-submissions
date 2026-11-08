@@ -1,31 +1,37 @@
 apiVersion: apps/v1
-kind: deployment
+kind: Deployment
 metadata:
-  name: log_output_v2
+  name: log-output-v2
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: log_output_v2
+      app: log-output-v2
   template:
     metadata:
       labels:
-        app: log_output_v2
+        app: log-output-v2
     spec:
       volumes:
         - name: shared-dir
           emptyDir: {}
       containers:
         # log writer container
-        name: log_writer
-        image: log_writer:1.0-SNAPSHOT
-        volumeMounts:
-          - name: shared-dir
-            mountPath: /usr/src/app/logs
+        - name: log-writer
+          image: log_writer:1.0
+          env:
+            - name: LOG_DIR
+              value: /usr/src/app/logs/log.txt
+          volumeMounts:
+            - name: shared-dir
+              mountPath: /usr/src/app/logs
 
         # log reader container
-        name: log_reader
-        image: log_reader:1.0-SNAPSHOT
-        volumeMounts:
-          - name: shared-dir
-            mountPath: /usr/src/app/logs
+        - name: log-reader
+          image: log_reader:1.0
+          env:
+            - name: LOG_DIR
+              value: /usr/src/app/logs/log.txt
+          volumeMounts:
+            - name: shared-dir
+              mountPath: /usr/src/app/logs
